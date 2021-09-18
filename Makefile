@@ -3,13 +3,13 @@
 JC = javac
 JV = java
 
-SOURCES = program.java
+SOURCES = compression.java guessing.java
 CLASSES = ${SOURCES:.java=.class}
 OUT     = program
 
 %.class: %.java
 	@echo "javac     $<"
-	@${JC} $<
+	@${JC} -Werror $<
 
 all: run
 
