@@ -19,6 +19,6 @@ run: ${CLASSES}
 	@${JV} ${OUT}
 
 clean:
-	rm ${CLASSES}
+	rm *.class
 
 .PHONY: clean run
