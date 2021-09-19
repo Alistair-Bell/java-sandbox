@@ -38,7 +38,7 @@ class program {
 
 	static String messages[] = {
 		"GNU's not unix!",
-		"Java is an island by in indochina.",
+		"Java is an island in indochina.",
 		"What you're refering to as Linux, is in fact, GNU/Linux, or as I've recently taken to calling it, GNU plus Linux.",
 	};
 
