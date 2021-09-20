@@ -6,7 +6,10 @@ import java.util.Scanner;
 
 /* The compression algorithms will just dump it's result to stdout. */
 class compression {
-	public static void rle_encode(String compress_in) {
+
+	public static void
+	rle_encode(String compress_in)
+	{
 		/* Start the compress value as the first char, this ensures that it will be incrimented at least a single time. */
 		char compress_value = compress_in.charAt(0);
 		int compress_count = 0, i = 0;
@@ -42,7 +45,9 @@ class program {
 		"What you're refering to as Linux, is in fact, GNU/Linux, or as I've recently taken to calling it, GNU plus Linux.",
 	};
 
-	public static void main(String[] argv) {
+	public static void 
+	main(String[] argv)
+	{
 		Scanner in = new Scanner(System.in);
 		/* Provides no authentication on user input, the user is free to put any old garbage. */
 		System.out.print("Please enter some text for the encoder! \n");
