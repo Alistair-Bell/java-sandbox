@@ -9,7 +9,7 @@ OUT     = program
 
 %.class: %.java
 	@echo "javac     $<"
-	@${JC} -Werror $<
+	@${JC} $<
 
 all: run
 
