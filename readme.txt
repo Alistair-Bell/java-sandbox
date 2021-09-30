@@ -16,7 +16,7 @@ Building
 --------
 
 (GNU/Linux) `make (desired program)`
-(BSD)       `gmake (desired_program)`
+(BSD)       `make (desired_program)`
 
 
 
