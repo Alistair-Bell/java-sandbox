@@ -3,9 +3,9 @@
 JC = javac
 JV = java
 
-SOURCES = compression.java guessing.java employee.java
+SOURCES = compression.java guessing.java employee.java shapes.java
 CLASSES = ${SOURCES:.java=.class}
-OUT     = employee_program
+OUT     = shapes_program
 
 %.class: %.java
 	@echo "javac     $<"
