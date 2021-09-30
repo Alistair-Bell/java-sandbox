@@ -5,7 +5,7 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class guessing {
+class guessing_program {
 	public static void main(String[] args) {
 		/* Instantiate the random and scanner objects. */
 		Random rand = new Random();

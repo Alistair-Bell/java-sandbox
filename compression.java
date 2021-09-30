@@ -109,7 +109,7 @@ class rle {
 	}
 }
 
-class program {
+class compression_program {
 
 	static String messages[] = {
 		"GNU's not unix!",

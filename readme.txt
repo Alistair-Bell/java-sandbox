@@ -15,8 +15,8 @@ Info
 Building
 --------
 
-(GNU/Linux) `make`
-(BSD)       `gmake`
+(GNU/Linux) `make (desired program)`
+(BSD)       `gmake (desired_program)`
 
 
 

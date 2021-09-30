@@ -1,22 +1,19 @@
 # Programs
-
 JC = javac
-JV = java
+JA = java
 
-SOURCES = compression.java guessing.java employee.java shapes.java
-CLASSES = ${SOURCES:.java=.class}
-OUT     = shapes_program
+TARGETS = employee shapes compression guessing
 
-%.class: %.java
-	@echo "javac     $<"
-	@${JC} $<
+all: ${TARGETS}
 
-all: run
-
-run: ${CLASSES}
-	@echo "java      ${OUT}"
-	@echo "--------------"
-	@${JV} ${OUT}
+employee:
+	${JC} employee.java ; ${JA} employee_program	
+guessing:
+	${JC} guessing.java ; ${JA} guessing_program	
+shapes:
+	${JC} shapes.java ; ${JA} shapes_program	
+compression:
+	${JC} compression.java ; ${JA} compression_program	
 
 clean:
 	rm *.class
