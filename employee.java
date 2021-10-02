@@ -21,7 +21,7 @@ import java.util.*;
 
 class employee {
 	public String _name;
-	public int    _required_hours;
+	public double _required_hours;
 	public double _hourly_wage;
 
 	/* Related constants. */
@@ -42,7 +42,7 @@ class employee {
 		System.out.printf("Please enter the name for the employee!\n");
 		return_value._name = __in.next();
 		System.out.printf("Please the required hours for the employee!\n");
-		return_value._required_hours = __in.nextInt();
+		return_value._required_hours = __in.nextDouble();
 		System.out.printf("Please the hourly wage for the employee!\n");
 		return_value._hourly_wage = __in.nextDouble();
 		return return_value;
