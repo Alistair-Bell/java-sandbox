@@ -2,9 +2,9 @@
 JC = javac
 JA = java
 
-TARGETS = employee shapes compression guessing
+TARGETS = employee shapes compression guessing sequence_reverse
 
-all: ${TARGETS}
+all: info
 info:
 	@echo "targets: ${TARGETS}"
 
@@ -16,6 +16,9 @@ shapes:
 	${JC} shapes.java && ${JA} shapes_program	
 compression:
 	${JC} compression.java && ${JA} compression_program	
+sequence_reverse:
+	${JC} sequence_reverse.java && ${JA} sequence_reverse_program
+
 
 clean:
 	rm *.class
