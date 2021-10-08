@@ -2,7 +2,7 @@
 JC = javac
 JA = java
 
-TARGETS = employee shapes compression guessing sequence_reverse
+TARGETS = employee shapes compression guessing sequence_reverse dice_roll
 
 all: info
 info:
@@ -18,6 +18,8 @@ compression:
 	${JC} compression.java && ${JA} compression_program	
 sequence_reverse:
 	${JC} sequence_reverse.java && ${JA} sequence_reverse_program
+dice_roll:
+	${JC} dice_roll.java && ${JA} dice_roll_program
 
 
 clean:
