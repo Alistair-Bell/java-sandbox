@@ -1,3 +1,7 @@
+/* 
+ * License: read 'license" at the root of the project.
+ */
+
 import java.util.*;
 
 final class card {
@@ -15,7 +19,7 @@ final class card {
 		_alt   = ((byte)__alt);
 	}
 	public void display() {
-		System.out.printf("Drew %d of %s\n", _value, card.suit_names[_suit]);
+		System.out.printf("Card: %d of %s\n", _value, card.suit_names[_suit]);
 	}
 	public static int sum_cards(card[] __cards) {
 		int acc = 0;
@@ -85,6 +89,18 @@ final class deck {
 
 class blackjack_program {
 	public static Scanner _scanner = new Scanner(System.in);
+	
+	public static void win(String __player, String __mesage, card[] __hand) {
+		System.out.printf("%s won, %s\n%s's hand:\n", __player, __mesage, __player);
+		for (card c : __hand) {
+			if (c._value != 0) {
+				c.display();
+			} else {
+				break;
+			}
+		}
+	}
+
 	public static void main(String[] __argv) {
 		deck d = new deck();
 		/* Shuffle the deck, makes sure that each draw is random(ish). */
@@ -103,23 +119,20 @@ class blackjack_program {
 			pcards[i] = d.draw(); 
 			dcards[i] = d.draw();
 		}
+		int drawn = 2;
 		System.out.printf("Your hand:\n");
 		pcards[0].display(); pcards[1].display();
-		int drawn = 2;
 
 		do {
-			int b = card.best_total(pcards);
-			if (21 < b) {
-				System.out.printf("You loose!\n");
-				break;
-			} else if (b == 21) {
-				System.out.printf("You win!\n");
+			/* Check the dealer has reached 21. */
+			if (card.best_total(dcards) == 21) {
+				win("Dealer", "as they say - \'the house always wins\'.", dcards);
+				return;
+			} else if (card.best_total(pcards) == 21) {
+				win("You", "congratulations.", pcards);
 				break;
 			}
-			pcards[drawn] = d.draw();
-			pcards[drawn].display();
-			++drawn;
+			break;	
 		} while (true);
 	}
-		
 }
