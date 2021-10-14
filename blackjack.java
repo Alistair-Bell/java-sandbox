@@ -14,18 +14,32 @@ final class card {
 		_suit  = ((byte)__suit);
 		_alt   = ((byte)__alt);
 	}
-	public static int win(String __player, card __c1, card __c2) {
-		if (__c1._value + __c2._value == 21) {
-			System.out.printf("%s won, they had the winning hand to sum to 21!\n", __player);
-			return 1;
-		} else if ((__c1._alt + __c2._value) == 21 || (__c1._value + __c2._alt) == 21) {
-			System.out.printf("%s won, their cards alternate values won them the game!\n", __player);
-			return 1;
-		}
-		return 0;
+	public void display() {
+		System.out.printf("Drew %d of %s\n", _value, card.suit_names[_suit]);
 	}
-	public static boolean win(card __c1, card __c2, card __c3) {
-		return false;
+	public static int sum_cards(card[] __cards) {
+		int acc = 0;
+		for (card i : __cards) {
+			acc += i._value;
+		}
+		return acc;
+	}
+	public static int best_total(card[] __cards) {
+		int ace_count = 0;
+		for (card i : __cards) {
+			if (i._alt != 0) { ++ace_count; }
+		}
+		int total = sum_cards(__cards),  closest = total;
+		for (int i = 0; i < ace_count; ++i) {
+			if (total > 21) {
+				break;
+			} 
+			total += 10;
+			if (total < 22) {
+				closest = total;
+			}
+		}
+		return total;
 	}
 }
 final class deck {
@@ -70,22 +84,42 @@ final class deck {
 }
 
 class blackjack_program {
+	public static Scanner _scanner = new Scanner(System.in);
 	public static void main(String[] __argv) {
 		deck d = new deck();
+		/* Shuffle the deck, makes sure that each draw is random(ish). */
+		d.shuffle();
 		d.shuffle();
 
-		card[] pcards = { d.draw(), d.draw(), new card(0, 0, 0) };
-		card[] dcards = { d.draw(), d.draw(), new card(0, 0, 0) };
-
-		System.out.printf("You drew a %d of %s, %d of %s, total %d.\n",
-			pcards[0]._value, card.suit_names[pcards[0]._suit],
-			pcards[1]._value, card.suit_names[pcards[1]._suit], pcards[0]._value + pcards[1]._value);
-		System.out.printf("Dealer drew a %d of %s, %d of %s, total %d.\n",
-			dcards[0]._value, card.suit_names[dcards[0]._suit],
-			dcards[1]._value, card.suit_names[dcards[1]._suit], dcards[0]._value + dcards[1]._value);
-
-		if (card.win("You", pcards[0], pcards[1]) == 1 || card.win("Dealer", dcards[0], dcards[1]) == 1) {
-			return;
+		card[] pcards = new card[10];
+		card[] dcards = new card[10];
+		for (int i = 0; i < 10; ++i) { 
+			pcards[i] = new card(0, 0, 0); 
+			dcards[i] = new card(0, 0, 0); 
 		}
+
+		/* Draw the inital 2 cards. */
+		for (int i = 0; i < 2; ++i) {
+			pcards[i] = d.draw(); 
+			dcards[i] = d.draw();
+		}
+		System.out.printf("Your hand:\n");
+		pcards[0].display(); pcards[1].display();
+		int drawn = 2;
+
+		do {
+			int b = card.best_total(pcards);
+			if (21 < b) {
+				System.out.printf("You loose!\n");
+				break;
+			} else if (b == 21) {
+				System.out.printf("You win!\n");
+				break;
+			}
+			pcards[drawn] = d.draw();
+			pcards[drawn].display();
+			++drawn;
+		} while (true);
 	}
+		
 }
