@@ -2,11 +2,11 @@
 JC = javac
 JA = java
 
-TARGETS = employee shapes compression guessing sequence_reverse dice_roll blackjack
+TARGETS = employee shapes compression guessing sequence_reverse dice_roll blackjack treasure_game
 
 all: info
 info:
-	@echo "targets: ${TARGETS}"
+	@echo "${TARGETS}"
 
 employee:
 	${JC} employee.java && ${JA} employee_program	
@@ -22,6 +22,9 @@ dice_roll:
 	${JC} dice_roll.java && ${JA} dice_roll_program
 blackjack:
 	${JC} blackjack.java && ${JA} blackjack_program
+treasure_game:
+	${JC} treasure_game.java && ${JA} treasure_game_program
+
 
 
 
