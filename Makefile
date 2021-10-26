@@ -2,7 +2,7 @@
 JC = javac
 JA = java
 
-TARGETS = employee shapes compression guessing sequence_reverse dice_roll blackjack treasure_game
+TARGETS = employee shapes compression guessing sequence_reverse dice_roll blackjack treasure_game check_digit
 
 all: info
 info:
@@ -24,6 +24,9 @@ blackjack:
 	${JC} blackjack.java && ${JA} blackjack_program
 treasure_game:
 	${JC} treasure_game.java && ${JA} treasure_game_program
+check_digit:
+	${JC} check_digit.java && ${JA} check_digit_program
+
 
 
 
