@@ -29,7 +29,7 @@ check_digit:
 hangman:
 	${JC} hangman.java && ${JA} hangman_program
 pizza:
-	${JC} pizza.java && ${JA} pizaa_program
+	${JC} pizza.java && ${JA} pizza_program
 
 clean:
 	rm *.class
