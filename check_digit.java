@@ -1,3 +1,7 @@
+/*
+ * License: read `license` at the root of the project.
+ */
+
 class check_digit_program { 
 
 	public static int generate_digit(final byte[] __bytes) {
