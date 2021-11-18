@@ -2,7 +2,8 @@
 JC = javac
 JA = java
 
-TARGETS = employee shapes compression guessing sequence_reverse dice_roll blackjack treasure_game check_digit hangman pizza
+TARGETS = employee shapes compression guessing sequence_reverse dice_roll blackjack \
+	treasure_game check_digit hangman pizza methods match4
 
 all: info
 info:
@@ -30,7 +31,10 @@ hangman:
 	${JC} hangman.java && ${JA} hangman_program
 pizza:
 	${JC} pizza.java && ${JA} pizza_program
-
+methods:
+	${JC} methods.java && ${JA} methods_program
+match4:
+	${JC} match4.java && ${JA} match4_program
 clean:
 	rm *.class
 
