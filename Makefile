@@ -2,9 +2,9 @@
 include config.mk
 
 TARGETS = employee shapes compression guessing sequence_reverse dice_roll blackjack \
-	treasure_game check_digit hangman pizza methods match4
+	treasure_game check_digit hangman pizza methods match4 raffle
 
-TARGET ?= match4
+TARGET ?= raffle
 
 all: 
 	${JC} ${TARGET}.java && ${JA} ${TARGET}_program
@@ -14,6 +14,6 @@ info:
 	@echo "Run make TARGET='program'"
 
 clean:
-	rm **.class
+	rm *.class
 
 .PHONY: clean run

@@ -15,8 +15,12 @@ Info
 Building
 --------
 
-(GNU/Linux) `make (desired program)`
-(BSD)       `make (desired_program)`
+(GNU/Linux) `make TARGET=(desired program)`
+(BSD)       `make TARGET=(desired_program)`
+
+* For information on targets on either platform run:
+
+`make info`
 
 
 
