@@ -1,41 +1,19 @@
-# Programs
-JC = javac
-JA = java
+# Include the config.mk file, this tells the paths where our java stuff is.
+include config.mk
 
 TARGETS = employee shapes compression guessing sequence_reverse dice_roll blackjack \
 	treasure_game check_digit hangman pizza methods match4
 
-all: info
-info:
-	@echo "${TARGETS}"
+TARGET ?= match4
 
-employee:
-	${JC} employee.java && ${JA} employee_program	
-guessing:
-	${JC} guessing.java && ${JA} guessing_program	
-shapes:
-	${JC} shapes.java && ${JA} shapes_program	
-compression:
-	${JC} compression.java && ${JA} compression_program	
-sequence_reverse:
-	${JC} sequence_reverse.java && ${JA} sequence_reverse_program
-dice_roll:
-	${JC} dice_roll.java && ${JA} dice_roll_program
-blackjack:
-	${JC} blackjack.java && ${JA} blackjack_program
-treasure_game:
-	${JC} treasure_game.java && ${JA} treasure_game_program
-check_digit:
-	${JC} check_digit.java && ${JA} check_digit_program
-hangman:
-	${JC} hangman.java && ${JA} hangman_program
-pizza:
-	${JC} pizza.java && ${JA} pizza_program
-methods:
-	${JC} methods.java && ${JA} methods_program
-match4:
-	${JC} match4.java && ${JA} match4_program
+all: 
+	${JC} ${TARGET}.java && ${JA} ${TARGET}_program
+
+info:
+	@echo ${TARGETS}
+	@echo "Run make TARGET='program'"
+
 clean:
-	rm *.class
+	rm **.class
 
 .PHONY: clean run

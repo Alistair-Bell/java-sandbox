@@ -1,0 +1,2 @@
+JC = javac
+JA = java
