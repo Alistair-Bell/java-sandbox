@@ -9,7 +9,7 @@ final class coordinate {
 	public int _y;
 	public coordinate(int __position, board __target) {
 		_y = __position / __target._width;
-		_x = _y * __target._width + (__position % __target._width);
+		_x = __position % __target._width;
 	}
 }
 
@@ -43,22 +43,22 @@ final class board {
 			System.out.println('|');
 		}
 	}
-	public boolean place(int __row, char __icon) {
+	public int place(int __row, char __icon) {
 		/* Validate that the row is in the width bounds. */
 		if (__row < 0 || __row >= _width) {
 			System.out.printf("Invalid index %d\n", __row);
-			return false;
+			return -1;
 		}
 
 		for (int i = _height - 1; i >= 0; --i) {
 			int search = __row + i * _width;
 			if (_tiles[search] == ' ') {
 				_tiles[search] = __icon;
-				return true;
+				return search;
 			}
 		}
 		System.out.printf("Row %d is full please pick another\n", __row);
-		return false;
+		return -1;
 	}
 	/* Checks the game for an end condition. */
 	public boolean check_end() {
@@ -69,15 +69,15 @@ final class board {
 		}
 		return (accumilator == _width);
 	}
+	public int row_count(int __row) {
+		int i = __row * _height;
+		for (; i >= __row; i -= _width) {
+			System.out.println(i);
+		}
+		return i ^= i;
+	}
 	public boolean check_wins(int __last_placed) {
 		char icon = _tiles[__last_placed];
-
-		/* 
-		 * As this is connect 4, 4 sequential tokens are required for the win.
-		 * The directions we check ignore directly above as it is impossible to win in this scenario.
-		 */
-
-		/* North east. */
 		return false;
 	}
 }
@@ -110,12 +110,17 @@ class match4_program {
 			_board.display();
 			/* Get where the user wants to place their counter. */
 			do {
+				int pos;
 				player_drop = get_int("Please enter an index for the drop!");
-			} while (!_board.place(player_drop, player_icon));
+				if ((pos = _board.place(player_drop, player_icon)) > -1) {
+					player_drop = pos;
+					break;
+				}
+			} while (true);
 			
 			/* Check the win condition for the */
 			coordinate c = new coordinate(player_drop, _board);
-			System.out.printf("%d : %d\n", c._x, c._y);
+			System.out.printf("{%2d:%2d}\n", c._x, c._y);
 
 			/* Check that all the end slots are not taken -> all places placed. */
 			if (_board.check_end()) {

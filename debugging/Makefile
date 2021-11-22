@@ -7,8 +7,7 @@ all:
 	${JC} ${TARGET}.java && ${JA} ${TARGET}_program
 
 info:
-	@echo "targets -> ${TARGETS}"
-	@echo "run make TARGET='program'"
+	@echo "${TARGETS}"
 
 
 clean:
