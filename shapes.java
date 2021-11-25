@@ -1,5 +1,5 @@
 /* 
- * License: read `license` at the root of the project.
+ * License: read `license.txt` at the root of the project.
  */
 
 import java.util.Scanner;

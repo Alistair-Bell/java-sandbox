@@ -1,5 +1,5 @@
 /* 
- * License: read `license` at the root of the project.
+ * License: read `license.txt` at the root of the project.
  * 
  * Write a program where the user types in a letter and a number.
  * The program will print out the alphabet backwards in order, for the number of characters the user has requested.

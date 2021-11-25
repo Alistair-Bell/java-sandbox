@@ -1,5 +1,5 @@
 /* 
- * License: read `license` at the root of the project.
+ * License: read `license.txt` at the root of the project.
  * Create a raffle program where the user can buy and check tickets for winners.
  * All tickets have a name and a random value, a winner is a prime value.
  * Don't use a scanner!
