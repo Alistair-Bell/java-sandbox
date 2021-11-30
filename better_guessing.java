@@ -54,6 +54,7 @@ class better_guessing_program {
 			if (attempt_place(get_range("Where do you want to place your counter?", 0, _board.length - 1))) {
 				++placements[0];
 			}
+			/* The cpu is at an disadvantage, it might pick spaces where itself has already picked, unlike the non cpu who remembers this stuff. */
 			if (attempt_place(cpu_placement)) {
 				++placements[1];
 			}
@@ -62,7 +63,8 @@ class better_guessing_program {
 		 if (placements[0] == placements[1]) {
 			 System.out.printf("It was a tie, each player had %d placements.\n", placements[0]);
 		 } else {
-			 System.out.printf("%s has won, they had placed more on the board.\n", (placements[0] > placements[1]) ? player_name : "Bob the robot");
+			 System.out.printf("%s has won, they had placed more on the board, [%d : %d].\n", (placements[0] > placements[1]) ? player_name : "Bob the robot",
+				placements[0], placements[1]);
 		 }
 	}
 }
