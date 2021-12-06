@@ -2,7 +2,7 @@ include ../config.mk
 
 TARGETS = adaptation bookstore login
 
-TARGET ?= bookstore
+TARGET ?= login
 
 all:
 	$(JC) ${TARGET}.java && $(JA) ${TARGET}_program
@@ -12,5 +12,6 @@ info:
 
 clean:
 	rm *.class
+	rm *.txt
 
 .PHONY: clean
