@@ -24,6 +24,22 @@ final class account {
 		_email = "root@bookstore.org";
 		_perms = Integer.MAX_VALUE;
 	}
+	public account(int __perms) {
+		Scanner s = new Scanner(System.in);
+		System.out.println("What should the account name be?");
+		_name = s.nextLine();
+		do {
+			System.out.println("What email to use?");
+			_email = s.nextLine();
+			System.out.println("What should the password be?");
+			String passwd = s.nextLine();
+			if (validate(passwd, _email) != -1) {
+				_hash = passwd.hashCode();
+				break;
+			}
+		} while (true);
+		System.out.printf("Succesfully created user %s.\n", _name);
+	}
 	public account(String __name, String __password, String __email, int __perms) {
 		_name  = __name;
 		_hash  = __password.hashCode();
@@ -40,6 +56,18 @@ final class account {
 	/* Override. */
 	public String toString() {
 		return _name + ":" + _hash + ":" + _email + ":" + _perms;
+	}
+	public int validate(String __password, String __email) {
+		if (__password.length() < 6) {
+			System.out.println("Password has too few characters");
+			return -1;
+		}
+		/* Validate email. */
+		if (__email.indexOf('@') == -1) {
+			System.out.println("Email has no \'@\' symbol!");
+			return -1;
+		}
+		return 1;
 	}
 }
 
@@ -102,40 +130,6 @@ final class book {
 	}
 	public book() {
 	}
-	public boolean write() {
-		FileWriter writer;
-		try {
-			writer = new FileWriter(bookstore_program._file_name, false);
-			/* Write all the book data. */
-			writer.write(_title + ",");
-			writer.write(_isbn + ",");
-			writer.write(_genre.toString() + ",");
-			/* Write the amount of authors expected. */
-			writer.write(_author.length + ",");
-			for (String s : _author) {
-				writer.write(s + ",");
-			}
-			writer.write("\n");
-			writer.close();
-		} catch (Exception e) {
-			System.out.printf("Exception thrown %s.\n", e.toString());
-			return false;
-		}
-		return true;
-	}
-	public static List<book> read() {
-		List<book> out = new ArrayList<book>();
-		try {
-			Scanner reader = new Scanner(bookstore_program._file);
-			while (reader.hasNextLine()) {
-				book construction; 
-				out.add(construct_string(reader.nextLine()));
-			}
-		} catch (Exception e) {
-			System.out.printf("Exception thrown %s.\n", e.toString());
-		}
-		return null;
-	}
 	private static book construct_string(String __in) {
 		book out = new book();
 		String[] split = __in.split(",");
@@ -147,11 +141,7 @@ final class book {
 		for (int i = 4; i < split.length; ++i) {
 			out._author[i - 4] = split[i];
 		}
-		out.display();
 		return out;
-	}
-	public void display() {
-		System.out.printf("Book [%s] [%s] [%s] [%s].\n", _title, _genre.toString(), _isbn, Arrays.toString(_author));
 	}
 }
 final class library {
@@ -178,8 +168,9 @@ class bookstore_program {
 		List<account> accounts = _sys.load();
 		if (accounts == null || accounts.size() < 1) {
 			accounts = new ArrayList<account>();
-			accounts.add(new account());
+			accounts.add(new account(Integer.MAX_VALUE));
 			_sys.dump(accounts);
+			return accounts.get(0);
 		}
 		
 		/* Get the name from our user. */
